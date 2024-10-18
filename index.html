@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
+  <link rel="icon" href="/public/favicon.svg" type="image/svg+xml">
+  <link rel="dns-prefetch" href="https://its-res.oss-cn-beijing.aliyuncs.com">
+  <script src="https://res2.wx.qq.com/open/js/jweixin-1.6.1.js"></script>
+  <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+  <script>
+    const coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)')
+      || CSS.supports('top: constant(a)'))
+    document.write(
+      `<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0${coverSupport ? ', viewport-fit=cover' : ''}" />`)
+  </script>
+  <title>闪烁的星空</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background-color: white;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"><!--app-html--></div>
+  <script type="module" src="/src/main.ts"></script>
+  <script>
+    function createStar() {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      document.body.appendChild(star);
+
+      setInterval(() => {
+        star.style.opacity = Math.random();
+      }, Math.random() * 1000 + 500);
+    }
+
+    for (let i = 0; i < 100; i++) {
+      createStar();
+    }
+  </script>
+</body>
+</html>
